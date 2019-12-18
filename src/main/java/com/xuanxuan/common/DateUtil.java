@@ -1,5 +1,6 @@
 package com.xuanxuan.common;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -80,5 +81,24 @@ public class DateUtil {
 	 * System.out.println(df.format(date)); }
 	 */
 	
-
+	/**
+	 * 给定时间 随机日期(字符串参数)
+	 * @param stratDate  "yyyy-MM-dd"
+	 * @param endDate "yyyy-MM-dd"
+	 * @return
+	 */
+	public static Date randomDate(String stratDate,String endDate) {
+		SimpleDateFormat st = new SimpleDateFormat("yyyy-MM-dd");
+		long date = 0L;
+		try {
+			Date d1 = st.parse(stratDate);
+			Date d2 = st.parse(endDate);
+			date = (long) (Math.random() * (d2.getTime() - d1.getTime() + 1) +d1.getTime());
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return new Date(date);
+		
+	}
 }
